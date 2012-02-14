@@ -1,0 +1,16 @@
+.hero-unit
+  %h1 Mollie Bank
+  %p Information page
+
+.row
+  .span4
+    %h1 Step 1
+    %p Make sure you change the url <a>https://secure.mollie.nl/xml/ideal</a> into <a>http://localhost:3000/mollie-bank/xml/ideal</a>
+    %p If you are using the <a href="https://github.com/manuelvanrijn/ideal-mollie">ideal-mollie</a> gem, you only have to include this gem into you gemfile.
+  .span4
+    %h1 Step 2
+    %p Make sure the <code>returnurl</code> and the <code>reporturl</code> are set to your local address. So for example you would have:
+    <code>http://localhost:3000/transactions/report</code>
+  .span4
+    %h1 Step 3
+    You'll now see Mollie Bank in the bank selection.

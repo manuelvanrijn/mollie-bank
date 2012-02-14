@@ -1,0 +1,31 @@
+.hero-unit
+  %h1 Mollie Bank
+  %p Pay time!
+
+#bank.row
+  .span1 &nbsp;
+  .span10
+    %h2 Payment request
+
+    %table.table.table-bordered.table-striped
+      %tbody
+        %tr
+          %td Amount
+          %td <strong>#{amount} EUR</strong>
+        %tr
+          %td Description
+          %td <strong>#{description}</strong>
+        %tr
+          %td Url to report if you've payed
+          %td <strong>#{reporturl}</strong>
+        %tr
+          %td(nowrap="nowrap") Url to return to after transaction
+          %td(width="100%") <strong>#{returnurl}</strong>
+        %tr
+          %td Transaction ID
+          %td <strong>#{transaction_id}</strong>
+
+    %a.btn.btn-large.btn-success(href="/mollie-bank/payment?paid=true&transaction_id=#{transaction_id}") <i class="icon-ok icon-white"></i> YES, I wish to pay
+
+    %a.btn.btn-large.btn-danger.pull-right(href="/mollie-bank/payment?paid=false&transaction_id=#{transaction_id}") <i class="icon-remove icon-white"></i> NO, I do not want to pay
+

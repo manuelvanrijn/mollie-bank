@@ -1,0 +1,29 @@
+!!! 5
+%html(lang="en")
+  %head
+    %title Mollie Bank
+    %link(rel="stylesheet" href="bootstrap/css/bootstrap.min.css")
+    %link(rel="stylesheet" href="bootstrap/css/bootstrap.min.responsive")
+    %link(rel="stylesheet" href="css/style.css")
+  %body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          %a.btn.btn-navbar
+            %span.i-bar
+            %span.i-bar
+            %span.i-bar
+          %a.brand(href="#") Mollie bank
+
+    .container
+
+      =yield
+
+      %hr
+
+      %footer.pull-right
+        %p &copy; by <a href="http://manuel.manuelles.nl/">Manuel van Rijn</a> #{Time.now.year}
+
+    %script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js")
+    %script(src="bootstrap/js/bootstrap.min.js")
+    %script(src="javascript/script.js")

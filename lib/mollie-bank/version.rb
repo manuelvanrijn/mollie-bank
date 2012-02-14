@@ -1,0 +1,3 @@
+module MollieBank
+  VERSION = "0.0.1"
+end

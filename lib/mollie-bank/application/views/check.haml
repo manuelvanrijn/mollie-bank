@@ -1,0 +1,16 @@
+!!! XML
+%response
+  %order
+    %transaction_id= "#{transaction_id}"
+    %amount 150
+    %currency EUR
+    - if is_paid
+      %payed true
+      %consumer
+        %consumerName Hr J Janssen
+        %consumerAccount P001234567
+        %consumerCity Amsterdam
+      %message MollieBank: wel betaald
+    - else
+      %payed false
+      %message MollieBank: niet betaald
