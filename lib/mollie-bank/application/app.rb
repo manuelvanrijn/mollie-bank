@@ -1,8 +1,3 @@
-def get_or_post(path, opts={}, &block)
-  get(path, opts, &block)
-  post(path, opts, &block)
-end
-
 module MollieBank
   class Application < Sinatra::Base
     helpers Sinatra::ContentFor
@@ -17,7 +12,7 @@ module MollieBank
 
     @@storage = Hash.new
 
-    get '/info' do
+    get '/' do
       haml :info
     end
     get '/ideal' do
@@ -67,7 +62,7 @@ module MollieBank
     end
 
     namespace '/xml' do
-      get_or_post '/ideal' do
+      post '/ideal' do
         content_type 'text/xml'
         case params[:a]
         when "banklist"
