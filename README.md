@@ -1,4 +1,6 @@
-# Mollie-Bank
+# Mollie-Bank [![Dependency Status](https://gemnasium.com/manuelvanrijn/mollie-bank.png)][gemnasium]
+
+[gemnasium]: https://gemnasium.com/manuelvanrijn/mollie-bank
 
 A simple implementation of the "TM Bank" by [Mollie](http://www.mollie.nl), but without the portforward stuff to test your iDeal transactions localy.
 
