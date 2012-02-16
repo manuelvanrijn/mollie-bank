@@ -37,7 +37,7 @@ Check if it works by browsing to: [http://localhost:4567/](http://localhost:4567
 
 ## Howto implement
 
-By default all communication for iDeal transactions is through [https://secure.mollie.nl/xml/ideal](https://secure.mollie.nl/xml/ideal). To use the "Mollie Bank" gem, you have to change this path into http://localhost:4567/xml/ideal](http://localhost:4567/xml/ideal).
+By default all communication for iDeal transactions is through [https://secure.mollie.nl/xml/ideal](https://secure.mollie.nl/xml/ideal). To use the "Mollie Bank" gem, you have to change this path into [http://localhost:4567/xml/ideal](http://localhost:4567/xml/ideal).
 
 Of course you only want to use this in development mode, so you have to create some code to change this path only when it isn't in production mode.
 
