@@ -23,7 +23,7 @@ module MollieBank
       amount = params[:amount]
 
       if transaction_id.nil? or description.nil? or reporturl.nil? or returnurl.nil? or amount.nil?
-        haml :html_error, :locals => { :message => "To few params have been supplied" }
+        haml :html_error, :locals => { :message => "To few params have been supplied (expected to retrieve 'transaction_id', 'description', 'reporturl', 'returnurl' and 'amount')" }
       else
         int, frac = ("%.2f" % (amount.to_f/100)).split('.')
         amount = "#{int},#{frac}"
@@ -31,12 +31,15 @@ module MollieBank
         @@storage["#{transaction_id}"]['reporturl'] = reporturl
         @@storage["#{transaction_id}"]['returnurl'] = returnurl
 
+        url_path = request.url.split('/ideal?transaction_id=')[0]
+
         haml :bank_page, :locals => {
           :transaction_id => transaction_id,
           :amount => amount,
           :reporturl => reporturl,
           :returnurl => returnurl,
-          :description => description
+          :description => description,
+          :url_path => url_path
         }
       end
     end
@@ -88,12 +91,15 @@ module MollieBank
           @@storage["#{transaction_id}"] = Hash.new
           @@storage["#{transaction_id}"]['paid'] = false
 
+          url_path = request.url.split('/xml/ideal')[0]
+
           haml :fetch, :layout => false, :locals => {
             :transaction_id => transaction_id,
             :amount => amount,
             :reporturl => reporturl,
             :returnurl => returnurl,
-            :description => description
+            :description => description,
+            :url_path => url_path
           }
         when "check"
           return error(-11) unless params.has_key?("partnerid")

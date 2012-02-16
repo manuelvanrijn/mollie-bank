@@ -4,5 +4,5 @@
     %transaction_id= "#{transaction_id}"
     %amount= "#{amount}"
     %currency EUR
-    %URL= "/mollie-bank/ideal?transaction_id=#{transaction_id}&amp;reporturl=#{reporturl}&amp;returnurl=#{returnurl}&amp;description=#{description}&amp;amount=#{amount}"
+    %URL= "#{url_path}/ideal?transaction_id=#{transaction_id}&amp;reporturl=#{reporturl}&amp;returnurl=#{returnurl}&amp;description=#{description}&amp;amount=#{amount}"
     %message Your iDEAL-payment has successfully been setup. Your customer should visit the given URL to make the payment

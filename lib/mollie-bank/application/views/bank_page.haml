@@ -25,7 +25,7 @@
           %td Transaction ID
           %td <strong>#{transaction_id}</strong>
 
-    %a.btn.btn-large.btn-success(href="/mollie-bank/payment?paid=true&transaction_id=#{transaction_id}") <i class="icon-ok icon-white"></i> YES, I wish to pay
+    %a.btn.btn-large.btn-success(href="#{url_path}/payment?paid=true&transaction_id=#{transaction_id}") <i class="icon-ok icon-white"></i> YES, I wish to pay
 
-    %a.btn.btn-large.btn-danger.pull-right(href="/mollie-bank/payment?paid=false&transaction_id=#{transaction_id}") <i class="icon-remove icon-white"></i> NO, I do not want to pay
+    %a.btn.btn-large.btn-danger.pull-right(href="#{url_path}/payment?paid=false&transaction_id=#{transaction_id}") <i class="icon-remove icon-white"></i> NO, I do not want to pay
 
