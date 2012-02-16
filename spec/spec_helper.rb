@@ -1,14 +1,22 @@
 require 'simplecov'
 SimpleCov.start
 
-require 'rubygems'
-require 'bundler/setup'
-require 'vcr'
-require 'ideal-mollie'
+# Load the Sinatra app
+require 'mollie-bank'
 
-VCR.config do |c|
-  c.cassette_library_dir = 'spec/vcr_cassettes'
-  c.stub_with :fakeweb
+require 'rspec'
+require 'webrat'
+require 'rack/test'
+require 'nokogiri'
+
+set :environment, :test
+
+RSpec.configure do |conf|
+  conf.include Rack::Test::Methods
+  conf.include Webrat::Methods
+  conf.include Webrat::Matchers
 end
 
-RSpec.configure
+def app
+  MollieBank::Application
+end

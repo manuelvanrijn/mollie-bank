@@ -21,8 +21,8 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "sinatra-reloader"
   s.add_development_dependency "rspec"
-  s.add_development_dependency "vcr"
-  s.add_development_dependency "fakeweb"
+  s.add_development_dependency "nokogiri"
+  s.add_development_dependency "webrat"
   s.add_development_dependency "yard"
   s.add_development_dependency "simplecov"
 
