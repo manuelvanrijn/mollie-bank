@@ -49,19 +49,19 @@ module MollieBank
 
       if transaction_id.nil? or paid.nil?
         haml :html_error, :locals => { :message => "To few params have been supplied" }
+      else
+        @@storage["#{transaction_id}"]['paid'] = paid
+        reporturl = @@storage["#{transaction_id}"]['reporturl']
+        returnurl = @@storage["#{transaction_id}"]['returnurl']
+        
+        begin
+          reporturl = URI("#{reporturl}?transaction_id=#{transaction_id}")
+          res = Net::HTTP.get(reporturl)
+        rescue
+        end
+        
+        redirect returnurl
       end
-
-      @@storage["#{transaction_id}"]['paid'] = paid
-      reporturl = @@storage["#{transaction_id}"]['reporturl']
-      returnurl = @@storage["#{transaction_id}"]['returnurl']
-
-      begin
-        reporturl = URI("#{reporturl}?transaction_id=#{transaction_id}")
-        res = Net::HTTP.get(reporturl)
-      rescue
-      end
-
-      redirect returnurl
     end
 
     namespace '/xml' do
