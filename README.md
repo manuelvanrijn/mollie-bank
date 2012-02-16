@@ -1,16 +1,33 @@
 # Mollie-Bank
 
-A simple implementation of the "TM Bank" by Mollie, but without the portforward stuff to test your iDeal transactions localy.
+A simple implementation of the "TM Bank" by [Mollie](http://www.mollie.nl), but without the portforward stuff to test your iDeal transactions localy.
 
-## Install and Run it
+## Getting started
 
-Install the gem
+### Install
+
+To install the gem you should execute
 
 ```
 gem install mollie-bank
 ```
 
-Run the mollie-bank
+Or if you are implementing this into a Rails project you could add the gem into your `Gemfile`.
+
+```
+gem 'mollie-bank'
+```
+
+Finally, if you don’t dig any of that gemming that’s so popular nowadays, you can install it as a plugin for you Rails project:
+
+```
+cd vendor/plugins
+git clone --depth 1 git://github.com/manuelvanrijn/mollie-bank.git mollie-bank
+```
+
+### Running the Mollie Bank
+
+After installation you can simple run:
 
 ```
 mollie-bank
@@ -20,60 +37,16 @@ Check if it works by browsing to: [http://localhost:4567/](http://localhost:4567
 
 ## Howto implement
 
-Here's a list with examples how to use this gem in combination with some API/Frameworks I found/used. Feel free to extend this list with your examples.
+By default all communication for iDeal transactions is through [https://secure.mollie.nl/xml/ideal](https://secure.mollie.nl/xml/ideal). To use the "Mollie Bank" gem, you have to change this path into http://localhost:4567/xml/ideal](http://localhost:4567/xml/ideal).
 
-### Ruby on Rails
+Of course you only want to use this in development mode, so you have to create some code to change this path only when it isn't in production mode.
 
-Add the `mollie-bank` to your Gemfile
+Check the [Wiki: Implement into existing modules](https://github.com/manuelvanrijn/mollie-bank/wiki/Implement-into-existing-modules) page for implementation of existing frameworks/modules.
 
-```
-gem 'mollie-bank', :git => 'https://github.com/manuelvanrijn/mollie-bank.git'
-```
+## Changelog
 
-Change you config.ru so it will run the mollie-bank when you start the rails server. For example, I changed the following:
+A detailed overview of can be found in the [CHANGELOG](https://github.com/manuelvanrijn/mollie-bank/blob/master/CHANGELOG.md).
 
-```
-# This file is used by Rack-based servers to start the application.
+## Copyright
 
-require ::File.expand_path('../config/environment',  __FILE__)
-run YourRailsApplicationName::Application
-```
-
-into:
-
-```
-# This file is used by Rack-based servers to start the application.
-
-require ::File.expand_path('../config/environment',  __FILE__)
-require 'mollie-bank'
-
-# - Make sinatra play nice
-use Rack::MethodOverride
-disable :run, :reload
-
-map "/" do
-  run YourRailsApplicationName::Application
-end
-
-configure(:development) {
-  map "/mollie-bank" do
-    run MollieBank::Application
-  end
-}
-```
-
-At this point you must communicate with [http://localhost:3000/mollie-bank/xml/ideal](http://localhost:3000/mollie-bank/xml/ideal) instead of the official [https://secure.mollie.nl/xml/ideal](https://secure.mollie.nl/xml/ideal)
-
-#### Use the ideal-mollie gem
-
-If you are using the [ideal-mollie](https://github.com/manuelvanrijn/ideal-mollie) gem, you can easely implement this by changing / adding two lines to you `config.ru`
-
-```
-configure(:development) {
-  map "/mollie-bank" do
-    IdealMollie.send(:remove_const, 'MOLLIE_URL')
-    IdealMollie.const_set('MOLLIE_URL', 'http://localhost:3000/mollie-bank/xml/ideal')
-    run MollieBank::Application
-  end
-}
-```
+Copyright © 2012 Manuel van Rijn. See [LICENSE](https://github.com/manuelvanrijn/mollie-bank/blob/master/LICENSE.md) for further details.

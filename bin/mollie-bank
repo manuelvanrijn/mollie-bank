@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-#
 begin
   require 'mollie-bank'
 rescue LoadError => e
@@ -9,5 +8,11 @@ rescue LoadError => e
   require 'mollie-bank'
 end
 
+puts "== Mollie Bank started!"
+puts "   please visit: http://localhost:4567/"
+puts ""
+
 MollieBank::Application.run!
-puts "Mollie Bank started"
+
+puts ""
+puts "== Mollie Bank stopped. Good bye"
