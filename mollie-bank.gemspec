@@ -19,8 +19,12 @@ Gem::Specification.new do |s|
   s.default_executable  = 'mollie-bank'
   s.require_paths       = ["lib"]
 
-  # specify any dependencies here; for example:
   s.add_development_dependency "sinatra-reloader"
+  s.add_development_dependency "rspec"
+  s.add_development_dependency "vcr"
+  s.add_development_dependency "fakeweb"
+  s.add_development_dependency "yard"
+  s.add_development_dependency "simplecov"
 
   s.add_dependency "rake", "~> 0.9.0"
   s.add_dependency "uuid", "~> 2.3"
