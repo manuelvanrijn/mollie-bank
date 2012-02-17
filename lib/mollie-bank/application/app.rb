@@ -9,9 +9,9 @@ module MollieBank
 
     set :views, File.expand_path('../views/', __FILE__)
     set :haml, { :format => :html5 }
-
-    @@storage = Hash.new
-
+    
+    enable :sessions
+    
     get '/' do
       haml :info
     end
@@ -28,9 +28,11 @@ module MollieBank
         int, frac = ("%.2f" % (amount.to_f/100)).split('.')
         amount = "#{int},#{frac}"
 
-        @@storage["#{transaction_id}"]['reporturl'] = reporturl
-        @@storage["#{transaction_id}"]['returnurl'] = returnurl
-
+        hash = get_storage
+        hash["#{transaction_id}"]['reporturl'] = reporturl
+        hash["#{transaction_id}"]['returnurl'] = returnurl
+        set_storage(hash)
+        
         url_path = request.url.split('/ideal?transaction_id=')[0]
 
         haml :bank_page, :locals => {
@@ -50,9 +52,11 @@ module MollieBank
       if transaction_id.nil? or paid.nil?
         haml :html_error, :locals => { :message => "To few params have been supplied" }
       else
-        @@storage["#{transaction_id}"]['paid'] = paid
-        reporturl = @@storage["#{transaction_id}"]['reporturl']
-        returnurl = @@storage["#{transaction_id}"]['returnurl']
+        hash = get_storage
+        hash["#{transaction_id}"]['paid'] = paid
+        reporturl = hash["#{transaction_id}"]['reporturl']
+        returnurl = hash["#{transaction_id}"]['returnurl']
+        set_storage(hash)
         
         begin
           reporturl = URI("#{reporturl}?transaction_id=#{transaction_id}")
@@ -88,9 +92,11 @@ module MollieBank
 
           transaction_id = UUID.new.generate.gsub('-', '')
 
-          @@storage["#{transaction_id}"] = Hash.new
-          @@storage["#{transaction_id}"]['paid'] = false
-
+          hash = get_storage
+          hash["#{transaction_id}"] = Hash.new
+          hash["#{transaction_id}"]['paid'] = false
+          set_storage(hash)
+          
           url_path = request.url.split('/xml/ideal')[0]
 
           haml :fetch, :layout => false, :locals => {
@@ -106,9 +112,9 @@ module MollieBank
           return error(-8) unless params.has_key?("transaction_id")
 
           transaction_id = params[:transaction_id]
-          return error(-10) unless @@storage.has_key?("#{transaction_id}")
+          return error(-10) unless get_storage.has_key?("#{transaction_id}")
 
-          is_paid = @@storage["#{transaction_id}"]['paid']
+          is_paid = get_storage["#{transaction_id}"]['paid']
 
           haml :check, :layout => false, :locals => {
             :transaction_id => transaction_id,
@@ -145,6 +151,19 @@ module MollieBank
         :code => code,
         :message => errors[code*-1]
       }
+    end
+    
+    private
+    def get_storage
+      if session[:storage]
+        hash = JSON.parse(session[:storage])
+      else
+        hash = Hash.new if hash.nil?
+      end
+      hash
+    end
+    def set_storage(hash)
+      session[:storage] = hash.to_json
     end
   end
 end
