@@ -10,11 +10,7 @@ module MollieBank
     set :views, File.expand_path('../views/', __FILE__)
     set :haml, { :format => :html5 }
 
-    #use Rack::Session::Pool
-
-    #configure :test do
-    #  set :sessions, false
-    #end
+    enable :sessions unless test?
 
     get '/' do
       haml :info
@@ -33,8 +29,8 @@ module MollieBank
         amount = "#{int},#{frac}"
 
         hash = get_storage
-        hash["#{transaction_id}"]['reporturl'] = reporturl
-        hash["#{transaction_id}"]['returnurl'] = returnurl
+        hash["#{transaction_id}"]["reporturl"] = reporturl
+        hash["#{transaction_id}"]["returnurl"] = returnurl
         set_storage(hash)
 
         url_path = request.url.split('/ideal?transaction_id=')[0]
@@ -58,8 +54,8 @@ module MollieBank
       else
         hash = get_storage
         hash["#{transaction_id}"]['paid'] = paid
-        reporturl = hash["#{transaction_id}"]['reporturl']
-        returnurl = hash["#{transaction_id}"]['returnurl']
+        reporturl = hash["#{transaction_id}"]["reporturl"]
+        returnurl = hash["#{transaction_id}"]["returnurl"]
         set_storage(hash)
 
         begin
@@ -97,7 +93,7 @@ module MollieBank
           transaction_id = UUID.new.generate.gsub('-', '')
 
           hash = get_storage
-          hash["#{transaction_id}"] = Hash.new
+          hash["#{transaction_id}"] = {}
           hash["#{transaction_id}"]['paid'] = false
           set_storage(hash)
 
@@ -159,12 +155,7 @@ module MollieBank
 
   private
     def get_storage
-      if session[:storage]
-        hash = JSON.parse(session[:storage])
-      else
-        hash = {} if hash.nil?
-      end
-      hash
+      session[:storage] == nil ? {} : JSON.parse(session[:storage])
     end
 
     def set_storage(hash)

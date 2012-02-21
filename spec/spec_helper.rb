@@ -1,6 +1,8 @@
 require 'simplecov'
 SimpleCov.start
 
+ENV['RACK_ENV'] = 'test'
+
 # Load the Sinatra app
 require 'mollie-bank'
 
@@ -8,8 +10,6 @@ require 'rspec'
 require 'webrat'
 require 'rack/test'
 require 'nokogiri'
-
-set :environment, :test
 
 RSpec.configure do |conf|
   conf.include Rack::Test::Methods
