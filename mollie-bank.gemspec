@@ -23,8 +23,10 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec"
   s.add_development_dependency "nokogiri"
   s.add_development_dependency "webrat"
+  s.add_development_dependency "redcarpet"
   s.add_development_dependency "yard"
   s.add_development_dependency "yard-sinatra"
+
   s.add_development_dependency "simplecov"
 
   s.add_dependency "rake", "~> 0.9.0"

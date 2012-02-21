@@ -1,7 +1,8 @@
+# MollieBank Module
 module MollieBank
+  # The Sinatra Application
   class Application < Sinatra::Base
     helpers Sinatra::ContentFor
-    register Sinatra::Namespace
     register Sinatra::Reloader
 
     set :static, true
@@ -73,64 +74,78 @@ module MollieBank
       end
     end
 
-    namespace '/xml' do
-      post '/ideal' do
-        content_type 'text/xml'
-        case params[:a]
-        when "banklist"
-          haml :banklist, :layout => false
-        when "fetch"
-          return error(-2) unless params.has_key?("partnerid")
-          return error(-7) unless params.has_key?("description")
-          return error(-3) unless params.has_key?("reporturl")
-          return error(-12) unless params.has_key?("returnurl")
-          return error(-4) unless params.has_key?("amount")
-          return error(-14) unless params[:amount].to_i > 118
-          return error(-6) unless params.has_key?("bank_id")
+    # Displays the xml depending on the specified action
+    #
+    # @example
+    #   # returns a list of banks
+    #   http://localhost:4567/xml/ideal?a=banklist
+    #
+    # @example
+    #   # creates a new order
+    #   http://localhost:4567/xml/ideal?a=fetch
+    #
+    # @example
+    #   # checks if a order was paid
+    #   http://localhost:4567/xml/ideal?a=check
+    post '/xml/ideal' do
+      content_type 'text/xml'
+      case params[:a]
+      when "banklist"
+        haml :banklist, :layout => false
+      when "fetch"
+        return error(-2) unless params.has_key?("partnerid")
+        return error(-7) unless params.has_key?("description")
+        return error(-3) unless params.has_key?("reporturl")
+        return error(-12) unless params.has_key?("returnurl")
+        return error(-4) unless params.has_key?("amount")
+        return error(-14) unless params[:amount].to_i > 118
+        return error(-6) unless params.has_key?("bank_id")
 
-          partnerid = params[:partnerid]
-          description = params[:description]
-          reporturl = params[:reporturl]
-          returnurl = params[:returnurl]
-          amount = params[:amount]
-          bank_id = params[:bank_id]
+        partnerid = params[:partnerid]
+        description = params[:description]
+        reporturl = params[:reporturl]
+        returnurl = params[:returnurl]
+        amount = params[:amount]
+        bank_id = params[:bank_id]
 
-          transaction_id = UUID.new.generate.gsub('-', '')
+        transaction_id = UUID.new.generate.gsub('-', '')
 
-          hash = get_storage
-          hash["#{transaction_id}"] = {}
-          hash["#{transaction_id}"]['paid'] = false
-          set_storage(hash)
+        hash = get_storage
+        hash["#{transaction_id}"] = {}
+        hash["#{transaction_id}"]['paid'] = false
+        set_storage(hash)
 
-          url_path = request.url.split('/xml/ideal')[0]
+        url_path = request.url.split('/xml/ideal')[0]
 
-          haml :fetch, :layout => false, :locals => {
-            :transaction_id => transaction_id,
-            :amount => amount,
-            :reporturl => reporturl,
-            :returnurl => returnurl,
-            :description => description,
-            :url_path => url_path
-          }
-        when "check"
-          return error(-11) unless params.has_key?("partnerid")
-          return error(-8) unless params.has_key?("transaction_id")
+        haml :fetch, :layout => false, :locals => {
+          :transaction_id => transaction_id,
+          :amount => amount,
+          :reporturl => reporturl,
+          :returnurl => returnurl,
+          :description => description,
+          :url_path => url_path
+        }
+      when "check"
+        return error(-11) unless params.has_key?("partnerid")
+        return error(-8) unless params.has_key?("transaction_id")
 
-          transaction_id = params[:transaction_id]
-          return error(-10) unless get_storage.has_key?("#{transaction_id}")
+        transaction_id = params[:transaction_id]
+        return error(-10) unless get_storage.has_key?("#{transaction_id}")
 
-          is_paid = get_storage["#{transaction_id}"]['paid']
+        is_paid = get_storage["#{transaction_id}"]['paid']
 
-          haml :check, :layout => false, :locals => {
-            :transaction_id => transaction_id,
-            :is_paid => is_paid
-          }
-        else
-          error(-1)
-        end
+        haml :check, :layout => false, :locals => {
+          :transaction_id => transaction_id,
+          :is_paid => is_paid
+        }
+      else
+        error(-1)
       end
     end
 
+    # Render the XML error for a specific code
+    #
+    # @param [int] error code
     def error(code)
       # Mollie codes taken from https://www.mollie.nl/support/documentatie/betaaldiensten/ideal/en/
       errors = []
@@ -159,10 +174,16 @@ module MollieBank
     end
 
   private
+    # Retrieve stored orders
+    #
+    # @return [Hash] stored orders
     def get_storage
       session[:storage] == nil ? {} : JSON.parse(session[:storage])
     end
 
+    # Save orders into the session
+    #
+    # @param [Hash] orders
     def set_storage(hash)
       session[:storage] = hash.to_json
     end
