@@ -9,9 +9,13 @@ module MollieBank
 
     set :views, File.expand_path('../views/', __FILE__)
     set :haml, { :format => :html5 }
-    
-    enable :sessions
-    
+
+    #use Rack::Session::Pool
+
+    #configure :test do
+    #  set :sessions, false
+    #end
+
     get '/' do
       haml :info
     end
@@ -32,7 +36,7 @@ module MollieBank
         hash["#{transaction_id}"]['reporturl'] = reporturl
         hash["#{transaction_id}"]['returnurl'] = returnurl
         set_storage(hash)
-        
+
         url_path = request.url.split('/ideal?transaction_id=')[0]
 
         haml :bank_page, :locals => {
@@ -57,13 +61,13 @@ module MollieBank
         reporturl = hash["#{transaction_id}"]['reporturl']
         returnurl = hash["#{transaction_id}"]['returnurl']
         set_storage(hash)
-        
+
         begin
           reporturl = URI("#{reporturl}?transaction_id=#{transaction_id}")
           res = Net::HTTP.get(reporturl)
         rescue
         end
-        
+
         redirect returnurl
       end
     end
@@ -96,7 +100,7 @@ module MollieBank
           hash["#{transaction_id}"] = Hash.new
           hash["#{transaction_id}"]['paid'] = false
           set_storage(hash)
-          
+
           url_path = request.url.split('/xml/ideal')[0]
 
           haml :fetch, :layout => false, :locals => {
@@ -152,16 +156,17 @@ module MollieBank
         :message => errors[code*-1]
       }
     end
-    
-    private
+
+  private
     def get_storage
       if session[:storage]
         hash = JSON.parse(session[:storage])
       else
-        hash = Hash.new if hash.nil?
+        hash = {} if hash.nil?
       end
       hash
     end
+
     def set_storage(hash)
       session[:storage] = hash.to_json
     end
