@@ -4,7 +4,7 @@ describe "frontend" do
   it "should show the home page when browsing to /" do
     get '/'
     last_response.should be_ok
-    last_response.body.should contain "Information page"
+    last_response.body.should contain "Test your transactions on your local machine"
     last_response.body.should contain "Step 1"
     last_response.body.should contain "Step 2"
     last_response.body.should contain "Step 3"
