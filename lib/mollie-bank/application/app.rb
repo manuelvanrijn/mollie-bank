@@ -12,9 +12,12 @@ module MollieBank
 
     enable :sessions unless test?
 
+    # Displays a information page of the Mollie-Bank gem
     get '/' do
       haml :info
     end
+
+    # Displays a bank page for finishing the transaction
     get '/ideal' do
       transaction_id = params[:transaction_id]
       description = params[:description]
@@ -45,6 +48,8 @@ module MollieBank
         }
       end
     end
+
+    # Background page that sends the paid = true or paid = false to the report url
     get '/payment' do
       transaction_id = params[:transaction_id]
       paid = params[:paid] == "true" ? true : false
