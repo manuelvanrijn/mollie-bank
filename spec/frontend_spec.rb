@@ -17,13 +17,16 @@ describe "frontend" do
   end
   it "should show me the Mollie Bank page to make payment or not when browsing to /ideal with parameters" do
     session = {"987654" => {"paid" => false}}
+    MollieBank::Storage.set('987654', {
+      :paid => false
+    })
     get '/ideal', {
       :transaction_id => '987654',
       :amount => '1000',
       :reporturl => 'http://example.org/report',
       :returnurl => 'http://example.org/return',
       :description => 'a_description'
-    }, 'rack.session' => {:storage => session.to_json}
+    }
 
     last_response.should be_ok
     last_response.body.should contain "Pay time!"
