@@ -31,24 +31,28 @@ describe "backend" do
     xml.response.order.message.content.should == "Your iDEAL-payment has successfully been setup. Your customer should visit the given URL to make the payment"
   end
   it "should return the true if paid" do
-    session = {'987654' => {'paid' => true}}
+    MollieBank::Storage.set('987654', {
+      :paid => true
+    })
     post '/xml/ideal', {
       :a => 'check',
       :partnerid => '1234',
       :transaction_id => '987654'
-    }, 'rack.session' => {:storage => session.to_json}
+    }
 
     last_response.should be_ok
     xml = Nokogiri::Slop(last_response.body)
     xml.response.order.payed.content.should == "true"
   end
   it "should return the false not paid" do
-    session = {'987654' => {'paid' => false}}
+    MollieBank::Storage.set('987654', {
+      :paid => false
+    })
     post '/xml/ideal', {
       :a => 'check',
       :partnerid => '1234',
       :transaction_id => '987654'
-    }, 'rack.session' => {:storage => session.to_json}
+    }
 
     last_response.should be_ok
     xml = Nokogiri::Slop(last_response.body)

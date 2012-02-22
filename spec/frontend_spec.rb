@@ -42,15 +42,15 @@ describe "frontend" do
     last_response.body.should contain "To few params have been supplied"
   end
   it "should store the correct values" do
-    session = {"987654" => {
-      "paid" => false,
-      "reporturl" => "http://example.org/report.html",
-      "returnurl" => "http://example.org/return.html"
-    }}
+    MollieBank::Storage.set('987654', {
+      :paid => false,
+      :reporturl => 'http://example.org/report.html',
+      :returnurl => 'http://example.org/return.html'
+    })
     get '/payment', {
       :transaction_id => '987654',
       :paid => 'true'
-    }, 'rack.session' => {:storage => session.to_json}
+    }
 
     last_response.should be_redirect
     follow_redirect!
