@@ -26,13 +26,12 @@ Gem::Specification.new do |s|
   s.add_development_dependency "redcarpet"
   s.add_development_dependency "yard"
   s.add_development_dependency "yard-sinatra"
-
   s.add_development_dependency "simplecov"
 
-  s.add_dependency "rake", "~> 0.9.0"
-  s.add_dependency "json", "~> 1.6.0"
-  s.add_dependency "uuid", "~> 2.3"
-  s.add_dependency "haml", "~> 3.0"
+  s.add_dependency "rake", "> 0.9.0"
+  s.add_dependency "json", "> 1.0.0"
+  s.add_dependency "uuid", "> 1.0"
+  s.add_dependency "haml", "> 3.0"
   s.add_dependency "sinatra", "~> 1.3.0"
   s.add_dependency "sinatra-contrib", "~> 1.3.1"
 end

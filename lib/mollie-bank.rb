@@ -10,4 +10,5 @@ require 'json'
 
 # LOCAL DEPS
 require 'mollie-bank/version'
+require 'mollie-bank/application/storage'
 require 'mollie-bank/application/app'
