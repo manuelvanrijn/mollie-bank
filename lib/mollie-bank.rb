@@ -1,6 +1,5 @@
 # EXTERNAL DEPS
 require 'sinatra'
-require 'sinatra/reloader'
 require 'haml'
 require 'net/http'
 require 'uuid'

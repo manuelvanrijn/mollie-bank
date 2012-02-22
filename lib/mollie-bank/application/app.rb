@@ -2,8 +2,6 @@
 module MollieBank
   # The Sinatra Application
   class Application < Sinatra::Base
-    register Sinatra::Reloader
-
     set :static, true
     set :public_folder, File.expand_path('..', __FILE__)
 
