@@ -1,8 +1,6 @@
 require 'simplecov'
 SimpleCov.start
 
-ENV['RACK_ENV'] = 'test'
-
 # Load the Sinatra app
 require 'mollie-bank'
 

@@ -1,7 +1,5 @@
 # EXTERNAL DEPS
 require 'sinatra'
-require 'sinatra/content_for'
-require 'sinatra/namespace'
 require 'sinatra/reloader'
 require 'haml'
 require 'net/http'

@@ -2,7 +2,6 @@
 module MollieBank
   # The Sinatra Application
   class Application < Sinatra::Base
-    helpers Sinatra::ContentFor
     register Sinatra::Reloader
 
     set :static, true
