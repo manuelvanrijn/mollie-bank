@@ -1,5 +1,6 @@
-# Mollie-Bank [![Dependency Status](https://gemnasium.com/manuelvanrijn/mollie-bank.png)][gemnasium]
+# Mollie-Bank [![Build Status](https://secure.travis-ci.org/manuelvanrijn/mollie-bank.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/manuelvanrijn/mollie-bank.png)][gemnasium]
 
+[travis]: http://travis-ci.org/manuelvanrijn/mollie-bank
 [gemnasium]: https://gemnasium.com/manuelvanrijn/mollie-bank
 
 A simple implementation of the "TM Bank" by [Mollie](http://www.mollie.nl), but without the portforward stuff to test your iDeal transactions localy.
@@ -12,19 +13,6 @@ To install the gem you should execute
 
 ```
 gem install mollie-bank
-```
-
-Or if you are implementing this into a Rails project you could add the gem into your `Gemfile`.
-
-```
-gem 'mollie-bank'
-```
-
-Finally, if you don’t dig any of that gemming that’s so popular nowadays, you can install it as a plugin for you Rails project:
-
-```
-cd vendor/plugins
-git clone --depth 1 git://github.com/manuelvanrijn/mollie-bank.git mollie-bank
 ```
 
 ### Running the Mollie Bank
