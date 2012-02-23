@@ -26,12 +26,14 @@ module MollieBank
       if transaction_id.nil? or description.nil? or reporturl.nil? or returnurl.nil? or amount.nil?
         haml :html_error, :locals => { :message => "To few params have been supplied (expected to retrieve 'transaction_id', 'description', 'reporturl', 'returnurl' and 'amount')" }
       else
+        cent_amount = amount
         int, frac = ("%.2f" % (amount.to_f/100)).split('.')
         amount = "#{int},#{frac}"
 
         transaction = settings.storage.get(transaction_id)
         transaction[:reporturl] = reporturl
         transaction[:returnurl] = returnurl
+        transaction[:amount] = cent_amount
 
         settings.storage.set(transaction_id, transaction)
 
@@ -129,10 +131,15 @@ module MollieBank
         transaction = settings.storage.get(transaction_id)
         return error(-10) if transaction.nil?
 
-        is_paid = settings.storage.get(transaction_id)[:paid]
+        is_paid = transaction[:paid]
+        amount = transaction[:amount]
+        transaction[:paid] = false
+
+        settings.storage.set(transaction_id, transaction)
 
         haml :check, :layout => false, :locals => {
           :transaction_id => transaction_id,
+          :amount => amount,
           :is_paid => is_paid
         }
       else
