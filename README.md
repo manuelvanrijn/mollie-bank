@@ -5,6 +5,8 @@
 
 A simple implementation of the "TM Bank" by [Mollie](http://www.mollie.nl), but without the portforward stuff to test your iDeal transactions localy.
 
+![Mollie Bank](http://manuel.manuelles.nl/images/posts/mollie-bank.png) 
+
 ## Getting started
 
 ### Install
