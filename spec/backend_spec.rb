@@ -27,7 +27,7 @@ describe "backend" do
     xml.response.order.transaction_id.content.should_not be_blank
     xml.response.order.amount.content.should == "1000"
     xml.response.order.currency.content.should == "EUR"
-    xml.response.order.URL.content.should contain "http://example.org/ideal?transaction_id="
+    xml.response.order.URL.content.should contain "http://example.org:4567/ideal?transaction_id="
     xml.response.order.message.content.should == "Your iDEAL-payment has successfully been setup. Your customer should visit the given URL to make the payment"
   end
   it "should return the true if paid" do

@@ -117,7 +117,8 @@ module MollieBank
 
         settings.storage.set(transaction_id, {:paid => false})
 
-        url_path = request.url.split('/xml/ideal')[0]
+        #url_path = request.url.split('/xml/ideal')[0]
+        url_path = "http://#{request.host}:#{Sinatra::Application.port}"
 
         haml :fetch, :layout => false, :locals => {
           :transaction_id => transaction_id,
