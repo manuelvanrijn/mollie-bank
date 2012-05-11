@@ -71,7 +71,11 @@ module MollieBank
         rescue
         end
 
-        redirect returnurl
+        redirect_url = "#{returnurl}&transaction_id=#{transaction_id}"
+        # if return url already contains a '?' we have to append the transaction_id with a '&'
+        redirect_url = "#{returnurl}?transaction_id=#{transaction_id}" if returnurl.split('?').count == 1
+
+        redirect redirect_url
       end
     end
 
