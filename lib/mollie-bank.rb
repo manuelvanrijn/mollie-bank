@@ -1,5 +1,6 @@
 # EXTERNAL DEPS
-require 'sinatra'
+require 'sinatra/base'
+require 'sinatra/multi_route'
 require 'haml'
 require 'net/http'
 require 'uuid'
