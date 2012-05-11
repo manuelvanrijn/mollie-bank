@@ -2,6 +2,8 @@
 module MollieBank
   # The Sinatra Application
   class Application < Sinatra::Base
+    register Sinatra::MultiRoute
+
     set :static, true
     set :public_folder, File.expand_path('..', __FILE__)
 
@@ -92,7 +94,7 @@ module MollieBank
     # @example
     #   # checks if a order was paid
     #   http://localhost:4567/xml/ideal?a=check
-    post '/xml/ideal' do
+    post '/xml/ideal', '/xml/ideal/' do
       content_type 'text/xml'
       case params[:a]
       when "banklist"

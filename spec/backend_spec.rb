@@ -11,6 +11,16 @@ describe "backend" do
     xml.response.bank.bank_id.content.should == "0001"
     xml.response.bank.bank_name.content.should == "Mollie Bank"
   end
+  it "should also return the Mollie bank when requesting /xml/ideal/?a=banklist" do
+    post '/xml/ideal/', {
+      :a => 'banklist'
+    }
+
+    last_response.should be_ok
+    xml = Nokogiri::Slop(last_response.body)
+    xml.response.bank.bank_id.content.should == "0001"
+    xml.response.bank.bank_name.content.should == "Mollie Bank"
+  end
   it "should return the correct xml for /xml/ideal?a=fetch" do
     post '/xml/ideal', {
       :a => 'fetch',
