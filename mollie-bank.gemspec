@@ -31,4 +31,5 @@ Gem::Specification.new do |s|
   s.add_dependency "uuid", "> 1.0"
   s.add_dependency "haml", "> 3.0"
   s.add_dependency "sinatra", "~> 1.3.0"
+  s.add_dependency "sinatra-contrib", "~> 1.3.0"
 end

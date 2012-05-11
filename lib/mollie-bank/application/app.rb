@@ -2,6 +2,8 @@
 module MollieBank
   # The Sinatra Application
   class Application < Sinatra::Base
+    register Sinatra::MultiRoute
+
     set :static, true
     set :public_folder, File.expand_path('..', __FILE__)
 
@@ -71,7 +73,11 @@ module MollieBank
         rescue
         end
 
-        redirect returnurl
+        redirect_url = "#{returnurl}&transaction_id=#{transaction_id}"
+        # if return url already contains a '?' we have to append the transaction_id with a '&'
+        redirect_url = "#{returnurl}?transaction_id=#{transaction_id}" if returnurl.split('?').count == 1
+
+        redirect redirect_url
       end
     end
 
@@ -88,7 +94,7 @@ module MollieBank
     # @example
     #   # checks if a order was paid
     #   http://localhost:4567/xml/ideal?a=check
-    post '/xml/ideal' do
+    post '/xml/ideal', '/xml/ideal/' do
       content_type 'text/xml'
       case params[:a]
       when "banklist"
@@ -113,7 +119,8 @@ module MollieBank
 
         settings.storage.set(transaction_id, {:paid => false})
 
-        url_path = request.url.split('/xml/ideal')[0]
+        #url_path = request.url.split('/xml/ideal')[0]
+        url_path = "http://#{request.host}:#{Sinatra::Application.port}"
 
         haml :fetch, :layout => false, :locals => {
           :transaction_id => transaction_id,
