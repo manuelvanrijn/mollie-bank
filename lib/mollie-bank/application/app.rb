@@ -156,7 +156,7 @@ module MollieBank
 
     # Render the XML error for a specific code
     #
-    # @param [int] error code
+    # @param [int] code
     def error(code)
       # Mollie codes taken from https://www.mollie.nl/support/documentatie/betaaldiensten/ideal/en/
       errors = []
