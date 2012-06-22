@@ -6,6 +6,3 @@ rvm:
   - ree
   - ruby-head
 script: "bundle exec rake spec"
-notifications:
-  recipients:
-    - manuel@manuelles.nl
