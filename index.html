@@ -1,92 +1,150 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Mollie-bank by manuelvanrijn</title>
+    <title>Mollie Bank - Manuel van Rijn</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mollie Bank project page">
+    <meta name="author" content="Manuel van Rijn">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!-- Le styles -->
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans" />
+    <link rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" href="assets/google-code-prettify/prettify.css" />
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-responsive.min.css" />
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="http://html5sim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
   </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Mollie-bank</h1>
-        <p>Implementation of the Mollie iDeal bank for testing on your local machine</p>
 
-        <p class="view"><a href="https://github.com/manuelvanrijn/mollie-bank">View the Project on GitHub <small>manuelvanrijn/mollie-bank</small></a></p>
-        <ul>
-          <li><a href="https://github.com/manuelvanrijn/mollie-bank/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/manuelvanrijn/mollie-bank/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/manuelvanrijn/mollie-bank">View On <strong>GitHub</strong></a></li>
-        </ul>
+  <body data-spy="scroll" data-target=".navbar" data-offset="50" id="home">
 
-        <p>
-          <a href="http://travis-ci.org/manuelvanrijn/mollie-bank"><img src="https://secure.travis-ci.org/manuelvanrijn/mollie-bank.png?branch=master" alt="Build Status"></a> <a href="https://gemnasium.com/manuelvanrijn/mollie-bank"><img src="https://gemnasium.com/manuelvanrijn/mollie-bank.png" alt="Dependency Status"></a>
-        </p>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Mollie Bank</a>
+          <div class="nav-collapse">
 
-      </header>
-      <section>
-        <h1>Mollie-Bank</h1>
+            <ul class="nav">
+              <li class="active"><a href="#home">Intro</a></li>
+              <li><a href="#getting-started">Getting started</a></li>
+              <li><a href="#implement">Implement</a></li>
+              <li><a href="https://github.com/manuelvanrijn/mollie-bank/blob/master/CHANGELOG.md">Changelog</a></li>
+            </ul>
 
-<p>A simple implementation of the "TM Bank" by <a href="http://www.mollie.nl">Mollie</a>, but without the portforward stuff to test your iDeal transactions localy.</p>
+            <ul class="nav pull-right">
+              <li>
+                <a href="http://travis-ci.org/manuelvanrijn/mollie-bank"><img src="https://secure.travis-ci.org/manuelvanrijn/mollie-bank.png?branch=master" alt="Build Status" style="max-width:100%;"></a>
+              </li>
+              <li>
+                <a href="https://gemnasium.com/manuelvanrijn/mollie-bank"><img src="https://gemnasium.com/manuelvanrijn/mollie-bank.png" alt="Dependency Status" style="max-width:100%;"></a>
+              </li>
+            </ul>
 
-<p><img src="http://manuel.manuelles.nl/images/posts/mollie-bank.png" alt="Mollie Bank"></p>
-
-<h2>Getting started</h2>
-
-<h3>Install</h3>
-
-<p>To install the gem you should execute</p>
-
-<pre><code>gem install mollie-bank
-</code></pre>
-
-<h3>Running the Mollie Bank</h3>
-
-<p>After installation you can simple run:</p>
-
-<pre><code>mollie-bank
-</code></pre>
-
-<p>Check if it works by browsing to: <a href="http://localhost:4567/">http://localhost:4567/</a></p>
-
-<h2>Howto implement</h2>
-
-<p>By default all communication for iDeal transactions is through <a href="https://secure.mollie.nl/xml/ideal">https://secure.mollie.nl/xml/ideal</a>. To use the "Mollie Bank" gem, you have to change this path into <a href="http://localhost:4567/xml/ideal">http://localhost:4567/xml/ideal</a>.</p>
-
-<p>Of course you only want to use this in development mode, so you have to create some code to change this path only when it isn't in production mode.</p>
-
-<p>Check the <a href="https://github.com/manuelvanrijn/mollie-bank/wiki/Implement-into-existing-modules">Wiki: Implement into existing modules</a> page for implementation of existing frameworks/modules.</p>
-
-<h2>Changelog</h2>
-
-<p>A detailed overview of can be found in the <a href="https://github.com/manuelvanrijn/mollie-bank/blob/master/CHANGELOG.md">CHANGELOG</a>.</p>
-
-<h2>Copyright</h2>
-
-<p>Copyright © 2012 Manuel van Rijn. See <a href="https://github.com/manuelvanrijn/mollie-bank/blob/master/LICENSE.md">LICENSE</a> for further details.</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/manuelvanrijn">manuelvanrijn</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-              <script type="text/javascript">
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-          </script>
-          <script type="text/javascript">
-            try {
-              var pageTracker = _gat._getTracker("UA-17149124-1");
-            pageTracker._trackPageview();
-            } catch(err) {}
-          </script>
 
+    <!-- INTRO
+    ================================================== -->
+    <header>
+      <div class="container">
+        <h1>Mollie Bank</h1>
+        <p>A simple implementation of the "TM Bank" by <a href="http://www.mollie.nl/">Mollie</a>, but without the portforward stuff to test your iDeal transactions localy</p>
+        <div>
+          <a class="btn btn-primary btn-large" href="https://github.com/manuelvanrijn/jquery-latestTweet"><i class="icon-eye-open icon-white"></i> View on GitHub</a>
+          <a class="btn btn-inverse btn-large" href="http://rubydoc.info/github/manuelvanrijn/mollie-bank/master/frames"><i class="icon-book icon-white"></i> View documentation</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+
+      <section>
+        <div class="row">
+          <div class="span12">
+            <img src="http://manuel.manuelles.nl/images/posts/mollie-bank.png" alt="Mollie Bank" style="max-width:100%;">
+          </div>
+        </div>
+      </section>
+
+      <!-- GETTING STARTED
+      ================================================== -->
+      <section id="getting-started">
+        <div class="row">
+          <div class="span12 panel">
+            <h4 class="header">Getting started</h4>
+<pre class="prettyprint linenums content">
+# Within your terminal execute the following commands:
+# Install the gem
+gem install ideal-mollie
+
+# run the mollie-bank
+mollie-bank
+</pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- IMPLEMENT
+      ================================================== -->
+      <section id="implement">
+        <div class="page-header">
+          <h2>Implement
+            <small>Mollie-bank in your application</small>
+          </h2>
+        </div>
+        <div class="row">
+          <div class="span12">
+            <p>By default all communication for iDeal transactions is through <code>https://secure.mollie.nl/xml/ideal</code>. To use the "Mollie Bank" gem, you have to change this path into <code>http://localhost:4567/xml/ideal</code>.</p>
+
+            <p>Of course you only want to use this in development mode, so you have to create some code to change this path only when it isn't in production mode.</p>
+
+            <p>Check the <a href="https://github.com/manuelvanrijn/mollie-bank/wiki/Implement-into-existing-modules">Wiki: Implement into existing modules</a> page for implementation of existing frameworks/modules.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER
+      ================================================== -->
+      <footer class="footer">
+        <p class="pull-right"><a href="#home">Back to top</a></p>
+        <p>
+          <a href="https://github.com/manuelvanrijn/mollie-bank">mollie-bank</a> is built and maintained by <a href="http://manuel.manuelles.nl/">Manuel van Rijn</a>.
+          Follow me on <a href="http://twitter.com/manuelvanrijn/">Twitter</a>, <a href="https://github.com/manuelvanrijn/">GitHub</a> and <a rel="me" href="https://plus.google.com/u/0/117895812778172164201?rel=author">Google+</a>.</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="assets/google-code-prettify/prettify.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.js"></script>
+    <script>$(function () { prettyPrint() })</script>
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-17149124-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
   </body>
 </html>
