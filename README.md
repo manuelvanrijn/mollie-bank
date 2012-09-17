@@ -42,3 +42,5 @@ A detailed overview of can be found in the [CHANGELOG](https://github.com/manuel
 ## Copyright
 
 Copyright © 2012 Manuel van Rijn. See [LICENSE](https://github.com/manuelvanrijn/mollie-bank/blob/master/LICENSE.md) for further details.
+
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/c7f118ff9d18b3ec8268969b2c5fff65 "githalytics.com")](http://githalytics.com/manuelvanrijn/mollie-bank)
