@@ -1,5 +1,6 @@
-# Mollie-Bank [![Build Status](https://secure.travis-ci.org/manuelvanrijn/mollie-bank.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/manuelvanrijn/mollie-bank.png)][gemnasium]
+# Mollie-Bank [![Gem Version](https://badge.fury.io/rb/mollie-bank.png)][gemversion] [![Build Status](https://secure.travis-ci.org/manuelvanrijn/mollie-bank.png?branch=master)][travis] [![Dependency Status](https://gemnasium.com/manuelvanrijn/mollie-bank.png)][gemnasium]
 
+[gemversion]: http://badge.fury.io/rb/mollie-bank
 [travis]: http://travis-ci.org/manuelvanrijn/mollie-bank
 [gemnasium]: https://gemnasium.com/manuelvanrijn/mollie-bank
 
