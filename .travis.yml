@@ -1,4 +1,6 @@
 language: ruby
+env:
+  - JRUBY_OPTS="-Xcext.enabled=true"
 rvm:
   - 1.8.7
   - 1.9.2
@@ -11,5 +13,4 @@ matrix:
   allow_failures:
     - rvm: ruby-head
     - rvm: jruby-head
-    - rvm: jruby-18mode
 script: "bundle exec rake spec"
