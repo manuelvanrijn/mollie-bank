@@ -1,11 +1,12 @@
-# Mollie-Bank [![Gem Version](https://badge.fury.io/rb/mollie-bank.png)][gemversion] [![Build Status](https://secure.travis-ci.org/manuelvanrijn/mollie-bank.png?branch=master)][travis]
+# Mollie-Bank [![Gem Version](https://badge.fury.io/rb/mollie-bank.png)][gemversion] [![Build Status](https://secure.travis-ci.org/manuelvanrijn/mollie-bank.png?branch=master)][travis] [![Coverage Status](https://coveralls.io/repos/manuelvanrijn/mollie-bank/badge.png?branch=gems-coveralls)][coveralls]
 
 [gemversion]: http://badge.fury.io/rb/mollie-bank
 [travis]: http://travis-ci.org/manuelvanrijn/mollie-bank
+[coveralls]: https://coveralls.io/r/manuelvanrijn/mollie-bank?branch=gems-coveralls
 
 A simple implementation of the "TM Bank" by [Mollie](http://www.mollie.nl), but without the portforward stuff to test your iDeal transactions localy.
 
-![Mollie Bank](http://manuel.manuelles.nl/images/posts/mollie-bank.png) 
+![Mollie Bank](http://manuel.manuelles.nl/images/posts/mollie-bank.png)
 
 ## Getting started
 
