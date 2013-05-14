@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "yard"
   s.add_development_dependency "yard-sinatra"
   s.add_development_dependency "simplecov"
+  s.add_development_dependency "coveralls"
 
   s.add_dependency "rake", "> 0.9.0"
   s.add_dependency "uuid", "> 1.0"
