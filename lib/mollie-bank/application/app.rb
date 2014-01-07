@@ -74,7 +74,7 @@ module MollieBank
 
         begin
           reporturl = URI("#{reporturl}?transaction_id=#{transaction_id}")
-          res = Net::HTTP.get(reporturl)
+          Net::HTTP.get(reporturl)
         rescue
         end
 
@@ -113,12 +113,10 @@ module MollieBank
         return error(-14) unless params[:amount].to_i > 118
         return error(-6) unless params.has_key?("bank_id")
 
-        partnerid = params[:partnerid]
         description = params[:description]
         reporturl = params[:reporturl]
         returnurl = params[:returnurl]
         amount = params[:amount]
-        bank_id = params[:bank_id]
 
         transaction_id = UUID.new.generate.gsub('-', '')
 

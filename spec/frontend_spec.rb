@@ -57,6 +57,6 @@ describe "frontend" do
 
     last_response.should be_redirect
     follow_redirect!
-    last_request.url.should == 'http://example.org/return.html?transaction_id=987654'
+    last_request.url.should eq 'http://example.org/return.html?transaction_id=987654'
   end
 end
