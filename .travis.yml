@@ -13,7 +13,7 @@ rvm:
   - ree
 before_install:
    - gem update --system 2.1.11
-   - gem update bundler
+   - gem --version
 matrix:
   allow_failures:
     - rvm: ruby-head
