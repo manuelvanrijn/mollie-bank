@@ -12,6 +12,11 @@ module MollieBank
 
     set :storage, MollieBank::Storage
 
+    def self.get_or_post(path, opts={}, &block)
+      get(path, opts, &block)
+      post(path, opts, &block)
+    end
+
     # Displays a information page of the Mollie-Bank gem
     get '/' do
       haml :info
@@ -94,7 +99,7 @@ module MollieBank
     # @example
     #   # checks if a order was paid
     #   http://localhost:4567/xml/ideal?a=check
-    post '/xml/ideal', '/xml/ideal/' do
+    get_or_post '/xml/ideal', '/xml/ideal/' do
       content_type 'text/xml'
       case params[:a]
       when "banklist"

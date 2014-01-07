@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe "backend" do
+  it "should support GET requests to the /xml/ideal endpoint" do
+    get '/xml/ideal', {
+      :a => 'banklist'
+    }
+    last_response.should be_ok
+  end
   it "should return the Mollie Bank when requesting /xml/ideal?a=banklist" do
     post '/xml/ideal', {
       :a => 'banklist'
