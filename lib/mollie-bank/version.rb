@@ -1,4 +1,4 @@
 module MollieBank
   # Version number of MollieBank
-  VERSION = "0.0.3"
+  VERSION = "0.0.4"
 end
