@@ -38,6 +38,34 @@ describe "frontend" do
     last_response.body.should contain "http://example.org/return"
     last_response.body.should contain "987654"
   end
+  it "should allow the use of query strings in report URLs" do
+    session = {"987654" => {"paid" => false}}
+    MollieBank::Storage.set('987654', {
+      :paid => false
+    })
+    get '/ideal', {
+      :transaction_id => '987654',
+      :amount => '1000',
+      :reporturl => 'http://example.org/report?a=1&b=2',
+      :returnurl => 'http://example.org/return',
+      :description => 'a_description'
+    }
+    last_response.body.should contain "http://example.org/report?a=1&b=2"
+  end
+  it "should allow the use of query strings in return URLs" do
+    session = {"987654" => {"paid" => false}}
+    MollieBank::Storage.set('987654', {
+      :paid => false
+    })
+    get '/ideal', {
+      :transaction_id => '987654',
+      :amount => '1000',
+      :reporturl => 'http://example.org/report',
+      :returnurl => 'http://example.org/return?a=1&b=2',
+      :description => 'a_description'
+    }
+    last_response.body.should contain "http://example.org/return?a=1&b=2"
+  end
   it "should show an html error when not all parameter are supplied for /payment" do
     get '/payment'
     last_response.should be_ok
