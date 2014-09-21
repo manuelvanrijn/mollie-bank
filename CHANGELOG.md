@@ -1,7 +1,7 @@
 # Changelog
 
 - **21 September 2014**: version 0.0.5
-  - Fixed issue #6: Allow query strings to be present in report URLs by @rightfold
+  - Fixed issue #6: Allow query strings to be present in report URLs by [@rightfold](https://github.com/rightfold)
 
 - **14 May 2013**: version 0.0.4
   - Fixed issue #5: Support both GET and POST requests for `/xml/ideal`
