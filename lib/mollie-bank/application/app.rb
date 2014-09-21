@@ -73,7 +73,7 @@ module MollieBank
         settings.storage.set(transaction_id, transaction)
 
         begin
-          reporturl = URI("#{reporturl}?transaction_id=#{transaction_id}")
+          reporturl = URI("#{reporturl}#{reporturl.include?('?') ? '&' : '?'}transaction_id=#{transaction_id}")
           Net::HTTP.get(reporturl)
         rescue
         end
