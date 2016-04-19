@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.name        = "mollie-bank"
   s.version     = MollieBank::VERSION
   s.authors     = ["Manuel van Rijn"]
-  s.email       = ["manuel@manuelles.nl"]
+  s.email       = ["manuel@manuelvanrijn.nl"]
   s.homepage    = "https://github.com/manuelvanrijn/mollie-bank"
   s.summary     = %q{Mollie Bank server to make Mollie iDeal payments on your local machine}
   s.description = %q{A small sinatra server that supports all the actions Mollie iDeal API needs to make a payment. Now you can test your transactions on you local machine without having to make portforwards}
