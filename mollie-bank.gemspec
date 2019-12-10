@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rake", "~> 10.1.0"
   s.add_dependency "uuid", "~> 2.3.7"
-  s.add_dependency "haml", "~> 4.0.4"
+  s.add_dependency "haml", ">= 4.0.4", "< 5.2.0"
   s.add_dependency "sinatra", "~> 1.4.0"
   s.add_dependency "sinatra-contrib", "~> 1.4.0"
 end
