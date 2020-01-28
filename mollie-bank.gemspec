@@ -11,12 +11,9 @@ Gem::Specification.new do |s|
   s.summary     = %q{Mollie Bank server to make Mollie iDeal payments on your local machine}
   s.description = %q{A small sinatra server that supports all the actions Mollie iDeal API needs to make a payment. Now you can test your transactions on you local machine without having to make portforwards}
 
-  s.rubyforge_project = "mollie-bank"
-
   s.files               = `git ls-files`.split("\n")
   s.test_files          = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables         = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
-  s.default_executable  = 'mollie-bank'
   s.require_paths       = ["lib"]
 
   s.add_development_dependency "rspec"
@@ -30,6 +27,6 @@ Gem::Specification.new do |s|
   s.add_dependency "rake", ">= 10.1", "< 13.1"
   s.add_dependency "uuid", "~> 2.3.7"
   s.add_dependency "haml", ">= 4.0.4", "< 5.2.0"
-  s.add_dependency "sinatra", "~> 1.4.0"
+  s.add_dependency "sinatra", ">= 1.4", "< 2.1"
   s.add_dependency "sinatra-contrib", ">= 1.4", "< 2.1"
 end
